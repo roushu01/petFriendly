@@ -216,6 +216,46 @@ footer {
   position: relative;
   z-index: 1;
 }
+#add-story-btn {
+  margin-top: -12px;
+  padding: 10px 15px;
+  font-size: 16px;
+  margin-left: 40%;
+  background-color: #e45817;
+  border-radius: 99px;
+  border: none;
+  margin-bottom: 15px;
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.popup-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  width: 80%;
+  max-width: 500px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
 
    
   </style>
@@ -285,7 +325,29 @@ footer {
       </div>
     </div>
   </div>
+
 </section>
+<button id="add-story-btn">Add Your Own Story</button>
+
+<div id="story-popup" class="popup">
+  <div class="popup-content">
+    <span class="close-btn">&times;</span>
+    <h3>Share Your Story</h3>
+    <form id="story-form">
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title" required><br>
+
+      <label for="description">Description:</label>
+      <textarea id="description" name="description" required></textarea><br>
+
+      <label for="image">Image URL:</label>
+      <input type="text" id="image" name="image"><br>
+
+      <button type="submit">Submit Story</button>
+    </form>
+  </div>
+</div>
+
 
 <footer>
   <div class="footer-container">
@@ -332,5 +394,47 @@ footer {
     }, 500); // Simulate delay
   });
 </script>
+<script>
+  const popup = document.getElementById("story-popup");
+  const btn = document.getElementById("add-story-btn");
+  const span = document.querySelector(".close-btn");
+
+  btn.onclick = () => {
+    popup.style.display = "block";
+  }
+
+  span.onclick = () => {
+    popup.style.display = "none";
+  }
+
+  window.onclick = (event) => {
+    if (event.target == popup) {
+      popup.style.display = "none";
+    }
+  }
+
+  document.getElementById("story-form").onsubmit = function(event) {
+    event.preventDefault();
+
+    const title = document.getElementById("title").value;
+    const description = document.getElementById("description").value;
+    const imageUrl = document.getElementById("image").value || "default.png";
+
+    const newStory = document.createElement("div");
+    newStory.className = "story";
+    newStory.innerHTML = `
+      <img src="${imageUrl}" alt="User Story">
+      <div>
+        <p><strong>${title}:</strong> ${description}</p>
+      </div>
+    `;
+
+    document.querySelector(".stories").appendChild(newStory);
+
+    popup.style.display = "none";
+    document.getElementById("story-form").reset();
+  }
+</script>
+
 </body>
 </html>
