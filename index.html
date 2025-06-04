@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pet-Friendly City Campaign</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      margin: 0;
+      font-family: 'Nunito', sans-serif;
+      background-color: #fefefe;
+      color: #333;
+    }
+    header {
+      background-color: #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav a {
+      margin: 0 1rem;
+      text-decoration: none;
+      color: #444;
+      font-weight: 600;
+    }
+    .hero {
+      background: url('https://images.unsplash.com/photo-1601758173925-388b2a773d8d') no-repeat center center/cover;
+      color: #fff;
+      background-color: #e45817;
+      text-align: center;
+      padding: 10rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      animation: slideDown 2s ease;
+    }
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero button {
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      background-color: #ff6b6b;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      animation: swing 2s ease infinite;
+    }
+    .animal {
+      position: absolute;
+      top: 20px;
+      left:20px;
+      width: 400px;
+    }
+    .form-section, .stories-section {
+      padding: 4rem 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+    .form-section h2, .stories-section h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    form {
+      display: grid;
+      
+      gap: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    input, select, textarea {
+      width:700px;
+      padding: 1rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .stories {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+.story {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: #f8f8f8;
+  padding: 1rem;
+  border-left: 4px solid #ff6b6b;
+  border-radius: 8px;
+ 
+}
+.story:hover{
+   animation:  3s ease-in-out infinite alternate;
+}
+.story img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+footer {
+  background-color: #f0f0f0;
+  color: #333;
+  padding: 3rem 2rem 1rem;
+}
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+  gap: 2rem;
+}
+.footer-column {
+  flex: 1 1 250px;
+}
+.footer-column h3 {
+  margin-bottom: 1rem;
+  color: #e45817;
+}
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+.footer-column ul li {
+  margin-bottom: 0.5rem;
+}
+.footer-column ul li a {
+  text-decoration: none;
+  color: #333;
+}
+.footer-column ul li a:hover {
+  color: #e45817;
+}
+.footer-bottom {
+  text-align: center;
+  padding-top: 1rem;
+  border-top: 1px solid #ddd;
+  font-size: 0.9rem;
+  color: #666;
+}
+.circle-effect {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  animation: zoomInOut 6s ease-in-out infinite, fadeColor 8s ease-in-out infinite;
+  background: radial-gradient(circle, rgba(255,255,255,0.2), rgba(255,255,255,0.05));
+}
+
+.circle-effect.large {
+  width: 400px;
+  height: 400px;
+  animation-delay: 0s;
+}
+
+.circle-effect.medium {
+  width: 300px;
+  height: 300px;
+  animation-delay: 1s;
+}
+
+.circle-effect.small {
+  width: 200px;
+  height: 200px;
+  animation-delay: 2s;
+}
+
+@keyframes zoomInOut {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}
+
+@keyframes fadeColor {
+  0% {
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2), rgba(255, 192, 203, 0.05));
+  }
+  25% {
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2), rgba(173, 216, 230, 0.05));
+  }
+  50% {
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2), rgba(144, 238, 144, 0.05));
+  }
+  75% {
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2), rgba(255, 228, 181, 0.05));
+  }
+  100% {
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2), rgba(255, 192, 203, 0.05));
+  }
+}
+
+.box {
+  position: relative;
+  z-index: 1;
+}
+
+   
+  </style>
+</head>
+<body>
+  <header>
+    <h2>🐾 Pet-Friendly City</h2>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#volunteer">Volunteer</a>
+      <a href="#stories">Impact Stories</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <img class="animal" src="ChatGPT Image Jun 4, 2025, 12_52_42 PM.png" alt="Walking Dog">
+    <div class="box">
+      <h1>Making Cities Paw-some! 🐾✨</h1>
+      <button onclick="scrollToForm()">Join the Movement</button>
+    </div>
+    <div class="circle-effect large"></div>
+    <div class="circle-effect medium"></div>
+    <div class="circle-effect small"></div>
+
+  </section>
+
+  <section class="form-section" id="volunteer">
+    <h2>Volunteer Now</h2>
+  <form id="volunteerForm">
+    <input type="text" name="fullName" placeholder="Full Name" required style="border: 2px solid #e45817;" />
+    <input type="text" name="city" placeholder="City" required style="border:1px solid #e45817;" />
+    <select name="role" required style="border:1px solid #e45817;">
+      <option value="">Select Role Preference</option>
+      <option value="events">Event Organizer</option>
+      <option value="outreach">Community Outreach</option>
+      <option value="social">Social Media Volunteer</option>
+    </select>
+    <textarea name="message" style="width:700px;border:1px solid #e45817;" placeholder="Tell us why you're joining..." rows="4"></textarea>
+    <button type="submit" style="background-color: #e45817;height:50px;width:250px;border-radius: 99px;">Submit</button>
+  </form>
+
+  </section>
+
+  <!-- Replace your entire <footer> and .stories section with this update -->
+
+<section class="stories-section" id="stories">
+  <h2>Impact Stories</h2>
+  <div class="stories">
+    <div class="story">
+      <img src="animal.png" alt="Pet 1">
+      <div>
+        <p><strong>Paws in the Park:</strong> Over 300 people and their pets joined us for a cleaner park initiative in Delhi!</p>
+      </div>
+    </div>
+    <div class="story">
+      <img src="Tabby Family Portrait on Black.png" alt="Pet 2">
+      <div>
+        <p><strong>Happy Tails Drive:</strong> 120 pets adopted during our campaign partnership in Bangalore!</p>
+      </div>
+    </div>
+    <div class="story">
+      <img src="animal3.png" alt="Pet 3">
+      <div>
+        <p><strong>Rescue Rally:</strong> Volunteers helped rescue 40+ stray animals during our March rescue event in Pune!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-container">
+    <div class="footer-column">
+      <h3>🐾 About Pet-Friendly City</h3>
+      <p>We promote inclusive and caring urban environments for pets through community outreach, clean parks, adoptions, and volunteer-driven efforts across India.</p>
+    </div>
+    <div class="footer-column">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="#home">🏠 Home</a></li>
+        <li><a href="#about">ℹ️ About Us</a></li>
+        <li><a href="#volunteer">🙋 Volunteer</a></li>
+        <li><a href="#stories">📖 Stories</a></li>
+        <li><a href="#contact">📩 Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h3>Contact Us</h3>
+      <p>Email: hello@petfriendlycity.org</p>
+      <p>Phone: +91 12345 67890</p>
+      <p>Location: India</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Pet-Friendly City Campaign. All rights reserved.</p>
+  </div>
+</footer>
+
+
+  <script>
+    function scrollToForm() {
+      document.getElementById("volunteer").scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+  <script>
+  document.getElementById("volunteerForm").addEventListener("submit", function (e) {
+    e.preventDefault(); // Prevent actual form submission
+
+    // Simulate sending data (you can use fetch() here if needed)
+    setTimeout(() => {
+      alert("Your message has been sent!");
+      this.reset(); // Clear the form
+    }, 500); // Simulate delay
+  });
+</script>
+</body>
+</html>
